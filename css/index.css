@@ -1,0 +1,29 @@
+.card-container{
+    border: 3px solid black;
+    width: 600px;
+    margin: 90px auto;
+    padding: 0px;
+    border-radius: 15px;
+    text-align: center;
+    display: flex;
+    background-color: azure;
+}
+
+.card-container:hover{
+    background-color: rgb(221, 221, 221);
+    border: 5px solid rgb(0, 0, 0);
+}
+
+.card-container img{
+    width: 100%;
+    height: 100%;
+    border-radius: 15px
+}
+
+.card-container table{
+    width: 100%;
+}
+
+.text-container{
+    margin: 15px;
+}
