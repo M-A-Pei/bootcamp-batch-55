@@ -12,6 +12,10 @@ form{
     width: 50vw;
 }
 
+form h1{
+    text-align: center;
+}
+
 label{
     font: 20px;
     font-weight: bold;
