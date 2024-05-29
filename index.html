@@ -3,48 +3,57 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Profile Page</title>
     <script src="https://kit.fontawesome.com/0412fad157.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/navbar.css">
   </head>
   <body>
-    <div
-      style="
-        border: 3px solid black;
-        width: 300px;
-        margin: 90px auto;
-        padding: 20px;
-        border-radius: 15px;
-        text-align: center;
-      "
-    >
-      <img
-        src="/img/dwa.JPG"
-        alt="ini adalah gambar diri kita"
-        style="width: 50%; border-radius: 15px"
-        
-      />
-      <h1>Muhammad Abdullah Syafii</h1>
-      <p>
-        Saya adalah seorang laki-laki yang sedang melakukan pengajaran mengenai
-        html dan juga css, cita cita saya adalah menciptakan sword art online sama persis seperti di animenya
-      </p>
+    <nav>
+      <div>
+        <ul class="navbar-list">
+          <li>
+            <img width="70px" src="img/logo.png" alt="">
+          </li>
+          <li>
+            <a class="navbar-item" href="index.html">Home</a>
+          </li>
+          <li>
+            <a class="navbar-item" href="form.html">Form</a>
+          </li>
+        </ul>
 
-      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><i class="fa-brands fa-youtube"></i></a>
-      <a href="x.com"><i class="fa-brands fa-square-twitter"></i></a>
-      <a href="https://discord.com/channels/792065987050078209/1185576328565633035"><i class="fa-brands fa-discord"></i></a>
-      <a href="https://github.com/M-A-Pei"><i class="fa-brands fa-github"></i></a>
-      <a href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></a>
+        <div class="navbar-btn">
+          <button >
+              Contact me
+          </button>
+        </div>
+      </div>
+    </nav>
 
-      <table border="1" style="width: 100%">
-        <tr>
-          <th>Project Name</th>
-          <th>Year</th>
-        </tr>
-        <tr>
-          <td>Personal Web</td>
-          <td>2024</td>
-        </tr>
-      </table>
+    <div class="card-container">
+      <div>
+        <img src="/img/dwa.JPG" alt="ini adalah gambar diri kita"/>
+      </div>
+
+      <div class="text-icon-container">
+        <div class="text-container">
+          <h1>M Abdullah Syafii</h1>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis eos molestias natus, aliquid inventore unde dolorum corrupti a, commodi consectetur incidunt architecto obcaecati numquam illo ipsa voluptatum reiciendis consequatur recusandae?Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur optio veritatis temporibus?
+          </p>
+          <button>contact</button> <a href="#"><span>download cv <i class="fa-solid fa-download fa"></i></span></a>
+        </div>
+  
+        <div class="icon-container">
+          <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><i class="fa-brands fa-youtube fa-xl"></i></a>
+          <a href="x.com"><i class="fa-brands fa-square-twitter fa-xl"></i></a>
+          <a href="https://discord.com/channels/792065987050078209/1185576328565633035"><i class="fa-brands fa-discord fa-xl"></i></a>
+          <a href="https://github.com/M-A-Pei"><i class="fa-brands fa-github fa-xl"></i></a>
+          <a href="https://www.instagram.com/"><i class="fa-brands fa-instagram fa-xl"></i></a>
+        </div>
+      </div>
+    
     </div>
   </body>
 </html>
