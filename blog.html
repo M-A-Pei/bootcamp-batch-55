@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile Page</title>
+    <script src="https://kit.fontawesome.com/0412fad157.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="assets/css/navbar.css">
+    <link rel="stylesheet" href="assets/css/blog.css">
+  </head>
+  <body>
+    <nav>
+      <div>
+        <ul class="navbar-list">
+          <li>
+            <img width="70px" src="assets/img/logo.png" alt="">
+          </li>
+          <li>
+            <a class="navbar-item" href="index.html">Home</a>
+          </li>
+          <li>
+            <a class="navbar-item" href="blog.html">Blog</a>
+          </li>
+        </ul>
+
+        <div class="navbar-btn">
+          <a href="form.html">
+            Contact me
+          </a>
+        </div>
+      </div>
+    </nav>
+    
+    <div class="container">
+        <div class="form-container">
+            <form>
+                <h1>make a project</h1>
+                <label>Project Name</label><input type="text" id="title" class="blog-input">
+    
+                <div>
+                    <label>Start Date</label><input type="text" id="start" class="blog-input">
+                    <label>End Date</label><input type="text" id="end" class="blog-input">
+                </div>
+    
+                <label>Description</label><textarea id="description" class="blog-input"></textarea>
+
+                <label>Technologies</label>
+                <div class="blog-radio">
+                    <input type="radio" id="javascript"><label>Javascript</label>
+                    <input type="radio" id="php"><label>PHP</label>
+                    <input type="radio" id="java"><label>Java</label>
+                    <input type="radio" id="python"><label>Python</label>
+                </div>
+    
+                    <label>Upload Image</label><input id="image" class="blog-input" type="file">
+
+                
+                    <input type="button" class="input-submit" value="upload" onclick="handleUpload()"></input>
+                
+
+            </form>
+        </div>
+    
+        <div class="content-container" id="content-container">
+        </div>
+    </div>
+    
+    <script src="assets/js/blog.js"></script>
+  </body>
+</html>
