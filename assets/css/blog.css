@@ -1,26 +1,26 @@
 .container{
     display: flex;
-    width: 95vw;
+    width: 100vw;
     height: 73vh;
-    margin-left: 5vw;
+    margin-left: 1vw;
 }
 
 .form-container{
-    margin-top: 70px;
+    margin-top: 50px;
     display: flex;
     justify-content: center;
-    width: 50%;
+    width: 37%;
     height: 100%;
 }
 
 .content-container{
-    margin-top: 70px;
-    margin-right: 30px;
-    margin-left: 20px;
-    width: 50%;
-    height: 80%;
+    margin-top: 40px;
+    margin-right: 25px;
+    margin-left: 10px;
+    width: 63%;
+    height: 90%;
     overflow-y: scroll;
-    padding: 30px;
+    padding: 20px;
     background-color:rgb(197, 220, 224);
     border-radius: 30px;
     border: 1px black solid;
@@ -30,13 +30,17 @@
     display: flex;
     border: 1px solid black;
     border-radius: 10px;
-    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     background-color: rgb(226, 226, 226);
 }
 
 .content-container .project-container img{
-    height: 150px;
+    height: 175px;
+    width: 200px;
+    object-fit: fill;
     margin-right: 10px;
+    border-radius: 15px;
 }
 
 .content-container .project-container .text-container {
@@ -59,12 +63,14 @@ span{
     padding: 8px 25px;
     background-color: rgb(69, 69, 247);
     border-radius: 15px;
+    margin-bottom: 10px;
 }
 
 .btn-div .detail-btn{
     padding: 8px 20px;
     background-color: lightblue;
     border-radius: 15px;
+    margin-bottom: 10px;
 
 }
 
@@ -77,7 +83,6 @@ form{
     background-color: rgb(241, 241, 241);
     border-radius: 30px;
     padding: 20px;
-    border-radius: 40px;
     border: 1px solid black;
     width: 100%;
     display: flex;
@@ -96,6 +101,7 @@ form{
     background-color:rgb(197, 220, 224);
     margin-bottom: 15px;
     border: 1px solid rgb(75, 94, 100);
+    padding: 10px;
 }
 
 label{
@@ -109,11 +115,16 @@ label{
 }
 
 .input-submit{
-    background-color:rgb(224, 197, 223);
+    background-color:rgb(209, 207, 209);
     padding: 10px;
     border-radius: 15px;
     width: 200px;
     border: 1px solid rgb(100, 92, 75);
+}
+
+.text-container .desc{
+    height: 50px;
+    overflow: hidden;
 }
 
 
