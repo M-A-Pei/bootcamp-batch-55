@@ -3,6 +3,10 @@
     padding: 0px;
 }
 
+body{
+    background-color: rgb(224, 224, 224);
+}
+
 nav div{
     display: flex;
     background-color: black;

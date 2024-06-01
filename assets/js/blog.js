@@ -3,6 +3,7 @@ let projectArray = []
 function getDistance(postedAt){
   const timeNow = new Date().getTime()
   const distance = timeNow - postedAt
+  console.log(timeNow)
 
   const seconds = Math.floor(distance / 1000)
   const minute = Math.floor(seconds / 60)
@@ -102,6 +103,7 @@ function renderProject() {
           </div>
 
           <span>${getDistance(projectArray[i].postedAt)}</span>
+          <span>from ${projectArray[i].start} to ${projectArray[i].end}</span>
 
           <div class="btn-div">
             <button class="edit-btn">edit</button>
