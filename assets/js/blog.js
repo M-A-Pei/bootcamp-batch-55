@@ -84,8 +84,14 @@ function handleUpload(){
     console.log(projectArray)
 }
 
-function renderProject() {  
-    document.getElementById("content-container").innerHTML="<h1>List of projects:</h1>";
+function renderProject() {
+  
+    if(projectArray.length == 0){
+      document.getElementById("content-container").innerHTML="<h1>no projects yet, go make some :)</h1>";
+    }else{
+      document.getElementById("content-container").innerHTML="<h1>List of projects:</h1>";
+
+    }
 
     for(let i = 0; i < projectArray.length; i++){
         document.getElementById("content-container").innerHTML+=`
