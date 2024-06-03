@@ -1,10 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Borel&family=Lobster&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Borel&family=Lobster&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
+
 *{
     margin: 0px;
     padding: 0px;
 }
 
 body{
-    background-color: rgb(240, 240, 240);
+    background-color: rgb(235, 235, 235);
+    font-family: "Roboto Condensed", sans-serif;
+}
+
+h1{
+    font-family: "Roboto Mono", monospace;
 }
 
 nav div{
@@ -19,6 +28,7 @@ nav div{
     font-size: 25px;
     color: white;
     text-decoration: none;
+    font-family: "MedievalSharp", cursive;
 }
 
 .navbar-item:hover{
@@ -37,6 +47,7 @@ nav div{
 .navbar-btn{
     justify-content: end;
     margin-right: 20px;
+    font-family: "MedievalSharp", cursive;
 }
 
 .navbar-btn a{
@@ -46,4 +57,41 @@ nav div{
     border-radius: 15px;
     text-decoration: none;
     color: black;
+}
+
+#burger-button {
+    display: none;
+}
+
+
+.burger-nav-container {
+    display: none;
+}
+
+.burger-nav-container a {
+    border: 2px solid black;
+    color: black;
+    font-family: "MedievalSharp", cursive;
+    background-color: rgb(39, 179, 204);
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+}
+
+@media only screen and (max-width: 500px) {
+    #burger-button{
+        display: block;
+        color: white;
+    }
+
+    .nav-collapse{
+        display: none;
+    }
+
+    .burger-nav-container{
+        display: none;
+        flex-direction: column;
+        font-size: 23px;
+    }
+
 }

@@ -3,9 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Profile Page</title>
+    <title>Contact me</title>
     <script src="https://kit.fontawesome.com/0412fad157.js" crossorigin="anonymous"></script>
     <script src="assets/js/form.js"></script>
+    <script src="assets/js/nav.js"></script>
     <link rel="stylesheet" href="assets/css/navbar.css">
     <link rel="stylesheet" href="assets/css/form.css">
   </head>
@@ -17,21 +18,27 @@
             <img width="70px" src="assets/img/logo.png" alt="">
           </li>
           <li>
-            <a class="navbar-item" href="index.html">Home</a>
+            <a class="navbar-item nav-collapse" href="index.html">Home</a>
           </li>
           <li>
-            <a class="navbar-item" href="blog.html">Projects</a>
+            <a class="navbar-item nav-collapse" href="blog.html">Projects</a>
           </li>
         </ul>
         
         <div class="navbar-btn">
-            <a href="form.html">
+            <a href="form.html" class="nav-collapse">
               Contact me
             </a>
+            <i class="fa-solid fa-bars" style="cursor: pointer;" id="burger-button" onclick="openBurger()"></i>
         </div>
 
       </div>
     </nav>
+    <div class="burger-nav-container" id="burger-nav-container">
+      <a href="index.html" class="active">Home</a>
+      <a href="blog.html">Projects</a>
+      <a href="form.html">Contact Me</a>
+    </div>  
 
     <div class="container">
         <form>

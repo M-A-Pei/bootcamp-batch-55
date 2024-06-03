@@ -2,11 +2,12 @@
     display: flex;
     width: 100vw;
     height: 73vh;
-    margin-left: 1vw;
+    justify-content: center;
 }
 
 .form-container{
     margin-top: 50px;
+    margin-left: 5px;
     display: flex;
     justify-content: center;
     width: 37%;
@@ -130,5 +131,50 @@ label{
 
 textarea{
     resize: none;
+}
+
+/* this is style for the detail page */
+.outer-detail-container{
+    display: flex;
+    width: 100vw;
+    justify-content: center;
+}
+
+.detail-container{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    margin: 30px 0;
+    border: 2px solid black;
+    border-radius: 20px;
+    background-color: white;
+}
+
+.detail-container img{
+    width: 60%;
+    align-self: center;
+    margin: 24px 0;
+    border-radius: 10px;
+}
+
+.detail-container h1{
+    font-size: 50px;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.detail-container span{
+    margin-left: 20px;
+}
+
+.detail-container p{
+    width: 90%;
+    align-self: center;
+    line-height: 25px;
+    margin-bottom: 10px;
+}
+
+.detail-title{
+    border-bottom: 2px solid black;
 }
 
