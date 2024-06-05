@@ -6,6 +6,7 @@
     <title>Anime List</title>
     <script src="https://kit.fontawesome.com/0412fad157.js" crossorigin="anonymous"></script>
     <script src="assets/js/nav.js"></script>
+    <script src="assets/js/anime.js"></script>
     <link rel="stylesheet" href="assets/css/anime.css">
     <link rel="stylesheet" href="assets/css/navbar.css">
   </head>
@@ -22,6 +23,9 @@
           <li>
             <a class="navbar-item nav-collapse" href="blog.html">Projects</a>
           </li>
+          <li>
+            <a class="navbar-item nav-collapse" href="anime.html">Animes</a>
+          </li>
         </ul>
 
         <div class="navbar-btn">
@@ -35,65 +39,23 @@
     <div class="burger-nav-container" id="burger-nav-container">
       <a href="index.html" class="active">Home</a>
       <a href="blog.html">Projects</a>
+      <a href="anime.html">Animes</a>
       <a href="form.html">Contact Me</a>
+
     </div>
 
     <div class="container">
         <h1 class="title">List of animes i watch</h1>
         <div class="rating-container">
-            <button>All</button>
-            <button>1 <i class="fa-solid fa-star"></i></button>
-            <button>2 <i class="fa-solid fa-star"></i></button>
-            <button>3 <i class="fa-solid fa-star"></i></button>
-            <button>4 <i class="fa-solid fa-star"></i></button>
-            <button>5 <i class="fa-solid fa-star"></i></button>
+            <button onclick="allAnime()">All</button>
+            <button onclick="ratingAnime(1)">1 <i class="fa-solid fa-star"></i></button>
+            <button onclick="ratingAnime(2)">2 <i class="fa-solid fa-star"></i></button>
+            <button onclick="ratingAnime(3)">3 <i class="fa-solid fa-star"></i></button>
+            <button onclick="ratingAnime(4)">4 <i class="fa-solid fa-star"></i></button>
+            <button onclick="ratingAnime(5)">5 <i class="fa-solid fa-star"></i></button>
         </div>
-        <div class="anime-container">
-            <div class="anime">
-                <h1>solo leveling</h1>
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbLuBnsgmyaR5ioyOHdzetZvxp8Ie1dbG9HQ&s" alt="">
-                <div class="rating-container">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                </div>
-                <span>12 episodes</span>
-                <p>
-                    this is an anime about a dude leveling up
-                </p>
-            </div>
-
-
-            <div class="anime">
-                <h1>dungeon meshi</h1>
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQM-Ol4D8LVkv_q7p0pDgy6OazyLaC_7Yfh5w&s" alt="">
-                <div class="rating-container">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                </div>
-                <span>24 episodes</span>
-                <p>
-                    this is an anime about eating dungeon food
-                </p>
-            </div>
-
-            <div class="anime">
-                <h1>Kaiju no 8</h1>
-                <img src="https://awsimages.detik.net.id/community/media/visual/2024/04/18/anime-kaiju-no8.jpeg?w=700&q=90" alt="">
-                <div class="rating-container">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                </div>
-
-                <span>24 episodes</span>
-                <p>
-                    this is an anime about a dude turning into a kaiju
-                </p>
-            </div>
+        <div class="anime-container" id="anime-container">
+            
         </div>
     </div>
 </body>

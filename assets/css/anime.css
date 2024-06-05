@@ -23,6 +23,10 @@
     color: black;
 }
 
+.container .rating-container{
+    margin-bottom: 20px;
+}
+
 .container .fa-star{
     color: #FFD43B
 }
