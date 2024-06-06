@@ -1,40 +1,20 @@
-const animeList = [
-    {
-        title: "Dungeon Meshi",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQM-Ol4D8LVkv_q7p0pDgy6OazyLaC_7Yfh5w&s",
-        desc: "this is an anime about eating dungeon food",
-        episodes: "24",
-        rating: 4,
-    },
-    {
-        title: "Kaiju No 8",
-        image: "https://awsimages.detik.net.id/community/media/visual/2024/04/18/anime-kaiju-no8.jpeg?w=700&q=90",
-        desc: "this is an anime about a dude turning into a kaiju",
-        episodes: "12",
-        rating: 3,
-    },
-    {
-        title: "Solo Leveling",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbLuBnsgmyaR5ioyOHdzetZvxp8Ie1dbG9HQ&s",
-        desc: "this is an anime about eating dungeon food",
-        episodes: "24",
-        rating: 5,
-    },
-    {
-        title: "Kekkai Sensen",
-        image: "https://m.media-amazon.com/images/I/71rcnrEOTIL._AC_UF894,1000_QL80_.jpg",
-        desc: "this is an anime about a chaotic world where humans and aliens live together",
-        episodes: "12",
-        rating: 2,
-    },
-    {
-        title: "Konosuba",
-        image: "https://i.pinimg.com/originals/f3/3c/6e/f33c6efb524bf80a0c963bec947200ac.jpg",
-        desc: "this is an anime about a group of idiots going on adventures",
-        episodes: "24",
-        rating: 4,
-    },
-]
+const animeList = new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest()
+    xhr.open("GET", "https://api.npoint.io/e24b65e4695fc0064169")
+    xhr.onload = () => {
+        if(xhr.status == 200){
+            resolve(JSON.parse(xhr.response))
+        }else{
+            reject("Cant load data")
+        }
+    }
+
+    xhr.onerror = ()=>{
+        reject("404 not found")
+    }
+
+    xhr.send()
+})
 
 function loadAnime(e){
     let rating = "";
@@ -56,18 +36,20 @@ function loadAnime(e){
     `
 }
 
-function allAnime(){
+async function allAnime(){
     const container = document.getElementById("anime-container")
     container.innerHTML = ""
-    animeList.forEach((e)=>{
+    const x = await animeList
+    x.forEach((e)=>{
         container.innerHTML += loadAnime(e);
     })
 }
 
-function ratingAnime(rating){
+async function ratingAnime(rating){
     const container = document.getElementById("anime-container")
     container.innerHTML = ""
-    const filter = animeList.filter((e)=>{
+    const x = await animeList
+    const filter = x.filter((e)=>{
         return e.rating === rating
     })
 
@@ -78,7 +60,6 @@ function ratingAnime(rating){
     if(filter.length == 0){
         container.innerHTML = `<h1>nothing here</h1>`
     }
-    
     
 }
 
