@@ -15,7 +15,7 @@
 }
 
 .content-container{
-    margin-top: 40px;
+    margin-top: 50px;
     margin-right: 25px;
     margin-left: 10px;
     width: 63%;
@@ -176,5 +176,39 @@ textarea{
 
 .detail-title{
     border-bottom: 2px solid black;
+}
+
+@media only screen and (max-width: 500px){
+    .container{
+        flex-direction: column;
+        height: auto;
+    }
+
+    .form-container{
+        width: 90%;
+        margin: auto;
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+
+    .content-container{
+        margin: auto;
+        width: 90%;
+        height: 400px;
+        margin-bottom: 50px;
+    }
+
+    .content-container .project-container img{
+        width: 142px;
+        height: 142px;
+    }
+
+    .text-container h1{
+        font-size: 20px;
+    }
+
+    .text-container .desc{
+        height: 15px;
+    }
 }
 

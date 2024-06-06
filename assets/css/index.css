@@ -43,7 +43,7 @@
     flex-direction: column;
 }
 
-.btn{
+.text-container .btn{
     background-color: black;
     color: white;
     padding: 10px;
@@ -51,4 +51,24 @@
     padding-right: 25px;
     margin: 10px;
     border-radius: 15px;
+}
+
+@media only screen and (max-width: 500px) {
+    .card-container{
+        width: 350px;
+    }
+
+    .text-container h1{
+        font-size: 18px;
+    }
+
+    .text-container p{
+        height: 40px;
+        overflow-y: scroll;
+    }
+    .text-container .btn{
+        padding-left: 10px;
+        padding-right: 10px;
+        margin: 5px;
+    }
 }

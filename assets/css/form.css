@@ -49,3 +49,9 @@ label{
 textarea{
     resize: none;
 }
+
+@media only screen and (max-width: 500px){
+    form{
+        width: 85vw;
+    }
+}
