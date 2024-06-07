@@ -210,5 +210,13 @@ textarea{
     .text-container .desc{
         height: 15px;
     }
+
+    .detail-title h1{
+        font-size: 20px;
+    }
+
+    .detail-container img{
+        width: 90%;
+    }
 }
 

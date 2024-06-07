@@ -42,30 +42,27 @@
         <a href="form.html">Contact Me</a>
     </div>
 
-    <div class="outer-detail-container">
-        <div class="detail-container">
+    <div class="outer-detail-container" id="container">
+        
+    </div>
+
+    <script>
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+      
+      document.getElementById("container").innerHTML = `
+      <div class="detail-container">
             <div class="detail-title">
-                <h1>this is the detail page for projects</h1>
-                <span>from 5/12/2024 to 3/1/2025 by Muhammad A Syafii</span>
+                <h1>${urlParams.get("title")}</h1>
+                <span>from ${urlParams.get("start")} to ${urlParams.get("end")} by Muhammad A Syafii</span>
             </div>
 
-            <img src="assets/img/office.jpeg" alt="">
+            <img src="${urlParams.get("img")}" alt="">
             <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia corrupti earum totam, sed blanditiis ea 
-                praesentium esse commodi dolores modi cupiditate dolor velit rerum qui nobis odit quod voluptatem! Optio porro 
-                iure natus ut ex a non quia sint earum nemo dicta, in itaque autem officia et, 
-                fugit assumenda id, architecto maxime odit. Fugit quas nobis aliquid magni laborum deserunt
-                sapiente odio at porro recusandae. Quasi, non mollitia ad, rem nesciunt voluptate repellat dicta consectetur distinctio dignissimos quo, iusto 
-                possimus ab. Illo aperiam voluptatem quaerat nihil repellendus consectetur distinctio amet, ipsam alias 
-                laudantium ratione repellat, ipsa, enim accusantium labore nam. Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta quod animi dicta laboriosam atque libero tempora optio itaque similique quisquam, facilis ullam eum nam nostrum
-                ratione dolores eius dignissimos. Odio quidem soluta blanditiis error officia. Assumenda odio laudantium eos alias, perferendis, sit sunt provident in vitae ullam nam dolores mollitia quod? Pariatur quos rem aliquid voluptatum aperiam non saepe omnis, quo dolorem debitis, voluptas suscipit itaque rerum optio natus! Repellendus dolores dolore aut
-                debitis. Enim hic modi non velit. Exercitationem, voluptatem numquam eveniet pariatur officiis nam rerum culpa iste maiores consectetur perferendis doloribus, doloremque ipsa adipisci nemo optio mollitia, veritatis unde soluta. Ex voluptate dolor reprehenderit facilis enim
-                est quae rerum distinctio maiores eligendi fugiat cum, voluptatem, ut iusto dolorem dolores tempora, nulla vero. Voluptas, tempore eos repudiandae soluta officia itaque esse cumque alias vero! Minus dolor debitis vero reprehenderit cupiditate quo deserunt repudiandae in atque ea, incidunt odio rem natus aut, modi placeat quaerat nulla sint beatae. Eligendi optio dolorem iste, 
-                nam consequatur totam sit dolores recusandae odit fugit tempora aspernatur corrupti temporibus similique cupiditate aliquam maiores non, perferendis eum necessitatibus explicabo, magni assumenda suscipit veniam? Repudiandae autem quo, dicta, dolores maiores veniam excepturi nihil perferendis inventore et earum voluptatum hic doloribus
-                itaque ipsam sed? Accusantium, excepturi porro, atque quod voluptatibus modi unde quibusdam eius aspernatur quasi asperiores velit numquam, harum vero dolor quos aliquam ut explicabo natus provident. Error libero, quam quis tempore sint quibusdam veniam? Maxime necessitatibus expedita, quod qui aliquid veniam blanditiis inventore enim provident. In numquam quasi, possimus fugiat vel rem itaque, quos modi eos, nobis aut perferendis iure 
-                voluptas deserunt illum voluptatum. A error, asperiores voluptates iste quas fuga accusantium deleniti consequatur non officiis minus est. Dicta, dolores, hic odio aperiam velit possimus natus nesciunt architecto laboriosam perspiciatis dolor incidunt expedita amet veritatis soluta.
+              ${urlParams.get("desc")}
             </p>
         </div>
-    </div>
+      `
+    </script>
   </body>
 </html>

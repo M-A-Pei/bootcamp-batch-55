@@ -113,7 +113,7 @@ function renderProject() {
 
           <div class="btn-div">
             <button class="edit-btn">edit</button>
-            <button class="detail-btn">detail</button>
+            <a href="blogDetail.html?title=${projectArray[i].title}&desc=${projectArray[i].description}&start=${projectArray[i].start}&end=${projectArray[i].end}&img=${projectArray[i].image}"><button class="detail-btn">detail</button></a>
           </div>
 
 

@@ -1,6 +1,6 @@
 const animeList = new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest()
-    xhr.open("GET", "https://api.npoint.io/e24b65e4695fc0064169")
+    xhr.open("GET", "https://api.npoint.io/e24b65e4695fc0064169", true)
     xhr.onload = () => {
         if(xhr.status == 200){
             resolve(JSON.parse(xhr.response))
