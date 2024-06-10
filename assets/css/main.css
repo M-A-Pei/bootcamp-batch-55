@@ -1,0 +1,22 @@
+@font-face {
+    font-family: "spongebob";
+    src: url("../fonts/Krabby\ Patty.ttf");
+}
+
+body{
+    background-image: url("..//img/bg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: "spongebob";
+}
+
+.text-warning{
+    -webkit-text-stroke-color: black;
+    -webkit-text-stroke-width: 1px;
+}
+
+@media only screen and (max-width: 500px){
+    body{
+        height: 100vh;
+    }
+}
