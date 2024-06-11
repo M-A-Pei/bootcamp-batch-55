@@ -15,6 +15,19 @@ body{
     -webkit-text-stroke-width: 1px;
 }
 
+body::-webkit-scrollbar {
+    display: none;
+  }
+
+.frame{
+    border: 20px solid;
+    border-image-slice: 10;
+border-image-repeat:
+stretch stretch;
+border-image-source:
+url("https://static.vecteezy.com/system/resources/thumbnails/002/193/057/small/wood-texture-background-free-vector.jpg");
+}
+
 @media only screen and (max-width: 500px){
     body{
         height: 100vh;
