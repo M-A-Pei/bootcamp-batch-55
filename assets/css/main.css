@@ -20,9 +20,14 @@ body::-webkit-scrollbar {
     display: none;
   }
 
+p::-webkit-scrollbar{
+    display: none;
+}
+
 .frame{
     border: 25px solid;
     border-image-slice: 10;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 border-image-repeat:
 stretch stretch;
 border-image-source:
@@ -36,5 +41,14 @@ url("https://static.vecteezy.com/system/resources/thumbnails/002/193/057/small/w
 @media only screen and (max-width: 500px){
     body{
         height: 100vh;
+        background-size: cover;
+    }
+
+    .profile-title{
+        font-size: 25px;
+    }
+
+    form{
+        width: 100vw;
     }
 }

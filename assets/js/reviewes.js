@@ -1,39 +1,39 @@
 let reviewArray = []
 
-function getDistance(postedAt){
-  const timeNow = new Date().getTime()
-  const distance = timeNow - postedAt
-  console.log(timeNow)
+// function getDistance(postedAt){
+//   const timeNow = new Date().getTime()
+//   const distance = timeNow - postedAt
+//   console.log(timeNow)
 
-  const seconds = Math.floor(distance / 1000)
-  const minute = Math.floor(seconds / 60)
-  const hour = Math.floor(minute / 60)
-  const days = Math.floor(hour / 24)
-  const weeks = Math.floor(days / 7)
-  const months = Math.floor(weeks / 30)
+//   const seconds = Math.floor(distance / 1000)
+//   const minute = Math.floor(seconds / 60)
+//   const hour = Math.floor(minute / 60)
+//   const days = Math.floor(hour / 24)
+//   const weeks = Math.floor(days / 7)
+//   const months = Math.floor(weeks / 30)
 
-  console.log(seconds);
-  console.log(minute);
-  console.log(hour);
-  console.log(days);
-  console.log(weeks);
-  console.log(months);
+//   console.log(seconds);
+//   console.log(minute);
+//   console.log(hour);
+//   console.log(days);
+//   console.log(weeks);
+//   console.log(months);
 
-  if (months > 0){
-    return `${months} months ago`
-  }else if(weeks > 0){
-    return `${weeks} weeks ago`
-  }else if(days > 0){
-    return `${days} days ago`
-  }else if(hour > 0){
-    return `${hour} hours ago`
-  }else if(minute > 0){
-    return `${minute} minutes ago`
-  }else if(seconds > 0){
-    return `${seconds} seconds ago`
-  }
+//   if (months > 0){
+//     return `${months} months ago`
+//   }else if(weeks > 0){
+//     return `${weeks} weeks ago`
+//   }else if(days > 0){
+//     return `${days} days ago`
+//   }else if(hour > 0){
+//     return `${hour} hours ago`
+//   }else if(minute > 0){
+//     return `${minute} minutes ago`
+//   }else if(seconds > 0){
+//     return `${seconds} seconds ago`
+//   }
 
-}
+// }
 
 function handleReview(){
     const name = document.getElementById('reviewName').value
@@ -107,6 +107,7 @@ function loadReview() {
         `
     }
 }
+
 
 
 setInterval(()=>{

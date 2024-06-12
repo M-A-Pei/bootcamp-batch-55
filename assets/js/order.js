@@ -1,15 +1,17 @@
-function handleOrder(){
-    const name = document.getElementById("orderName").value
-    const number = document.getElementById("orderNumber").value
-    const food = document.getElementById("orderFood").value
-    const address = document.getElementById("orderAddress").value
+const notifier = require('node-notifier');
+
+module.exports = function handleOrder(e){
+    const name = e.name
+    const number = e.number
+    const food = e.order
+    const address = e.address
 
     let errorMsg = "the following data is empty:\n"
     if(name == ""){
         errorMsg += "-name \n"
     }
     if(number == ""){
-        errorMsg += "-number no \n"
+        errorMsg += "-number \n"
     }
     if(food == ""){
         errorMsg += "-food \n"
@@ -23,11 +25,14 @@ function handleOrder(){
        food == "" ||
        address == "" 
     ){
-        alert(errorMsg)
-        return
+        notifier.notify({
+            title: 'form not complete',
+            message: errorMsg,
+            sound: true,
+        })
+        return false
     }
 
-    let link = document.createElement("a")
-    link.href = `mailto:syafii2006@gmail.com?subject=Ordering a meal&body=Name: ${name}%0D%0ANumber:${number}%0D%0Aaddress: ${address}%0D%0Ai would like to order a ${food}`
-    link.click()
-}
+    return true
+
+} 
