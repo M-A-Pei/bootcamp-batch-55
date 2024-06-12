@@ -6,8 +6,9 @@
 body{
     background-image: url("..//img/bg.png");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size:100%;
     font-family: "spongebob";
+    background-color: rgb(240, 236, 196);
 }
 
 .text-warning{
@@ -20,12 +21,16 @@ body::-webkit-scrollbar {
   }
 
 .frame{
-    border: 20px solid;
+    border: 25px solid;
     border-image-slice: 10;
 border-image-repeat:
 stretch stretch;
 border-image-source:
 url("https://static.vecteezy.com/system/resources/thumbnails/002/193/057/small/wood-texture-background-free-vector.jpg");
+}
+
+.order-form{
+    background-image: url("https://static.vecteezy.com/system/resources/thumbnails/002/193/057/small/wood-texture-background-free-vector.jpg") !important;
 }
 
 @media only screen and (max-width: 500px){
