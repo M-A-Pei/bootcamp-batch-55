@@ -1,14 +1,15 @@
 const exp = require('constants');
 const express = require('express')
 const order = require("./assets/js/order")
-const path = require("path")
+const path = require("path");
+const checkReview = require("./assets/js/reviewes")
 const app = express()
 const port = 5000
 
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, "assets", "pages"))
 
-app.use(express.static(path.join(__dirname, "assets")))
+app.use("/assets" ,express.static(path.join(__dirname, "assets")))
 app.use(express.urlencoded({ extended: false }));
 
 let reviewsList = []
@@ -27,9 +28,34 @@ app.get('/reviewsForm', function (req, res) {
 
 app.post('/reviewsForm', function (req, res) {
   const data = req.body;
-  reviewsList.unshift(data)
-  console.log(reviewsList);
-  res.redirect("/reviews")
+  if(checkReview(data)){
+    reviewsList.unshift(data)
+    console.log(reviewsList);
+    res.redirect("/reviews")
+  }
+  
+  res.redirect('/reviewsForm')
+})
+
+app.post('/reviewDelete/:id', function(req, res){
+  const {id} = req.params
+  reviewsList.splice(id, 1)
+  res.redirect('/reviews')
+})
+
+app.get("/reviewEdit/:id", function(req, res){
+  const {id} = req.params
+  const data = reviewsList[id]
+  res.render('reviewEdit', {id, data ,title: "edit review"})
+})
+
+app.post("/reviewEdit/:id", function(req, res){
+  const {id} = req.params
+  const {name, stayed, left, review, burger, pizza, kelp, hotdog, img} = req.body
+  reviewsList[id] = {
+    name, stayed, left, review, burger, pizza, kelp, hotdog, img
+  }
+  res.redirect('/reviews')
 })
 
 app.get('/reviews', function (req, res) {
@@ -39,7 +65,13 @@ app.get('/reviews', function (req, res) {
   }else{
     empty = false
   }
+  console.log(reviewsList)
   res.render('reviews', {reviewsList, empty})
+})
+
+app.get('/reviewInfo/:id', function(req, res){
+  const id = req.params.id
+  res.render('reviewInfo', {id: reviewsList[id]})
 })
 
 app.get('/credits', function (req, res) {
@@ -59,5 +91,6 @@ app.post('/order', function (req, res){
 
 app.listen(port, ()=>{
     console.log(`listening on port http://localhost:${port}/`)
+    console.log(path.join(__dirname, "assets", "/"))
 })
 
