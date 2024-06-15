@@ -42,7 +42,7 @@
         <div class="row mt-5" id="titlecontainer">{{#if empty}}<h1 class="text-center">no reviews yet</h1> {{else}} <h1 class="text-center">List of reviews</h1> {{/if}}</div>
         <div class="row">
             <div class="col-12 d-flex justify-content-center flex-wrap" id="reviewContainer">
-              {{#each reviewsList}}
+              {{#each data}}
                   <div class="card bg-dark mb-3 mx-2 w-75">
                     <div class="row g-0">
                       <div class="col-md-3">
@@ -51,7 +51,7 @@
                       <div class="col-md-7">
                         <div class="card-body">
                           <a href="/reviewInfo/{{@index}}" class="text-decoration-none"><h3 class="card-title text-warning" style="line-height: 15px;">{{this.name}}</h3></a>
-                          <span class="card-text text-secondary small" style="font-size: 10px;">from {{this.stayed}} to {{this.left}}</span>
+                          <span class="card-text text-secondary small" style="font-size: 10px;">at {{this.stayed}}</span>
                           <div class="d-flex">
                             {{#if this.burger}}
                               <i class="fa-solid fa-burger text-light mx-2"></i>
@@ -70,8 +70,8 @@
                         </div>
                       </div>
                       <div class="col-md-2">
-                        <a href="/reviewEdit/{{@index}}" class="btn btn-success mt-3" style="width: 40%;">Edit</a>
-                        <form class="d-inline" action="/reviewDelete/{{@index}}" method="post">
+                        <a href="/reviewEdit/{{this.id}}" class="btn btn-success mt-3" style="width: 40%;">Edit</a>
+                        <form class="d-inline" action="/reviewDelete/{{this.id}}" method="post">
                           <button class="btn btn-danger mt-3">delete</button>
                         </form>
                       </div>

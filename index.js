@@ -2,6 +2,9 @@ const exp = require('constants');
 const express = require('express')
 const order = require("./assets/js/order")
 const path = require("path");
+const {Sequelize, QueryTypes} = require("sequelize")
+const config = require("./config/config.json")
+const sequelize = new Sequelize(config.development)
 const checkReview = require("./assets/js/reviewes")
 const app = express()
 const port = 5000
@@ -39,7 +42,7 @@ app.post('/reviewsForm', function (req, res) {
 
 app.post('/reviewDelete/:id', function(req, res){
   const {id} = req.params
-  reviewsList.splice(id, 1)
+  sequelize.query(`DELETE FROM public."Reviews" WHERE id=${id}`)
   res.redirect('/reviews')
 })
 
@@ -58,15 +61,30 @@ app.post("/reviewEdit/:id", function(req, res){
   res.redirect('/reviews')
 })
 
-app.get('/reviews', function (req, res) {
+app.get('/reviews', async function (req, res) {
+
+  const data = await sequelize.query(`SELECT * FROM public."Reviews"`, {typeof: QueryTypes.SELECT})
   let empty
-  if(reviewsList.length == 0){
+  if(data.length == 0){
     empty = true
   }else{
     empty = false
   }
-  console.log(reviewsList)
-  res.render('reviews', {reviewsList, empty})
+  console.log(empty)
+  res.render('reviews', {data: data[0], empty})
+})
+
+app.get('/abc', async function (req, res) {
+
+  const data = await sequelize.query(`SELECT * FROM public."Reviews"`, {typeof: QueryTypes.SELECT})
+  let empty
+  if(data.length == 0){
+    empty = true
+  }else{
+    empty = false
+  }
+
+  res.json(data[0])
 })
 
 app.get('/reviewInfo/:id', function(req, res){
