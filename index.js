@@ -15,8 +15,6 @@ app.set('views', path.join(__dirname, "assets", "pages"))
 app.use("/assets" ,express.static(path.join(__dirname, "assets")))
 app.use(express.urlencoded({ extended: false }));
 
-let reviewsList = []
-
 app.get('/', function (req, res) {
   res.render('index')
 })
@@ -29,15 +27,19 @@ app.get('/reviewsForm', function (req, res) {
   res.render('reviewsForm')
 })
 
-app.post('/reviewsForm', function (req, res) {
+app.post('/reviewsForm', async function (req, res) {
   const data = req.body;
   if(checkReview(data)){
-    reviewsList.unshift(data)
-    console.log(reviewsList);
+    if(data.burger == undefined) {data.burger = false} else data.burger = true
+    if(data.pizza == undefined) {data.pizza = false} else data.pizza = true
+    if(data.kelp == undefined) {data.kelp = false} else data.kelp = true
+    if(data.hotdog == undefined) {data.hotdog = false} else data.hotdog = true
+    let query = `INSERT INTO public."Reviews"(name, stayed, "left", review, burger, pizza, kelp, hotdog, "createdAt", "updatedAt")VALUES('${data.name}', '${data.stayed}', '${data.left}', '${data.review}', '${data.burger}', '${data.pizza}', '${data.kelp}', '${data.hotdog}', '15/6/2024', '15/6/2024');`
+    await sequelize.query(query, {typeof: QueryTypes.INSERT})
     res.redirect("/reviews")
+  }else{
+    res.redirect('/reviewsForm')
   }
-  
-  res.redirect('/reviewsForm')
 })
 
 app.post('/reviewDelete/:id', function(req, res){
@@ -46,18 +48,24 @@ app.post('/reviewDelete/:id', function(req, res){
   res.redirect('/reviews')
 })
 
-app.get("/reviewEdit/:id", function(req, res){
+app.get("/reviewEdit/:id", async function(req, res){
   const {id} = req.params
-  const data = reviewsList[id]
+  const data = await sequelize.query(`SELECT * FROM public."Reviews" where id=${id};`)
   res.render('reviewEdit', {id, data ,title: "edit review"})
 })
 
-app.post("/reviewEdit/:id", function(req, res){
+app.post("/reviewEdit/:id", async function(req, res){
   const {id} = req.params
-  const {name, stayed, left, review, burger, pizza, kelp, hotdog, img} = req.body
-  reviewsList[id] = {
-    name, stayed, left, review, burger, pizza, kelp, hotdog, img
-  }
+  let {name, stayed, left, review, burger, pizza, kelp, hotdog, img} = req.body
+
+  if(burger == undefined) {burger = false} else burger = true
+  if(pizza == undefined) {pizza = false} else pizza = true
+  if(kelp == undefined) {kelp = false} else kelp = true
+  if(hotdog == undefined) {hotdog = false} else hotdog = true
+
+  await sequelize.query(`UPDATE public."Reviews"
+	SET name='${name}', stayed='${stayed}', "left"='${left}', review='${review}', burger='${burger}', pizza='${pizza}', kelp='${kelp}', hotdog='${hotdog}'
+	WHERE id=${id};`, {typeof: QueryTypes.UPDATE})
   res.redirect('/reviews')
 })
 
@@ -70,7 +78,7 @@ app.get('/reviews', async function (req, res) {
   }else{
     empty = false
   }
-  console.log(empty)
+
   res.render('reviews', {data: data[0], empty})
 })
 

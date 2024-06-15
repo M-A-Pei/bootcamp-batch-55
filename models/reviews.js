@@ -14,6 +14,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Reviews.init({
+    id: {
+      type: DataTypes.UUID,
+      primaryKey: true,
+    },
     name: DataTypes.STRING,
     stayed: DataTypes.DATE,
     left: DataTypes.DATE,
