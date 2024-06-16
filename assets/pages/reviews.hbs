@@ -41,7 +41,7 @@
         <a href="/reviewsForm" class="position-absolute end-0 mx-5 btn btn-warning btn-outline-dark">Write a Review</a>
         <div class="row mt-5" id="titlecontainer">{{#if empty}}<h1 class="text-center">no reviews yet</h1> {{else}} <h1 class="text-center">List of reviews</h1> {{/if}}</div>
         <div class="row">
-            <div class="col-sm-12 d-flex justify-content-center flex-wrap text-center" id="reviewContainer">
+            <div class="col-sm-12 d-flex justify-content-center flex-wrap" id="reviewContainer">
               {{#each data}}
                   <div class="card bg-dark mb-3 mx-2 w-75">
                     <div class="row g-0">
@@ -50,7 +50,7 @@
                       </div>
                       <div class="col-md-7">
                         <div class="card-body">
-                          <a href="/reviewInfo/{{@index}}" class="text-decoration-none"><h3 class="card-title text-warning" style="line-height: 15px;">{{this.name}}</h3></a>
+                          <a href="/reviewInfo/{{this.id}}" class="text-decoration-none"><h3 class="card-title text-warning" style="line-height: 15px;">{{this.name}}</h3></a>
                           <span class="card-text text-secondary small" style="font-size: 10px;">at {{this.stayed}}</span>
                           <div class="d-flex">
                             {{#if this.burger}}

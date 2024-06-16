@@ -51,7 +51,7 @@ app.post('/reviewDelete/:id', function(req, res){
 app.get("/reviewEdit/:id", async function(req, res){
   const {id} = req.params
   const data = await sequelize.query(`SELECT * FROM public."Reviews" where id=${id};`)
-  res.render('reviewEdit', {id, data ,title: "edit review"})
+  res.render('reviewEdit', {id, data: data[0][0] ,title: "edit review"})
 })
 
 app.post("/reviewEdit/:id", async function(req, res){
@@ -78,7 +78,6 @@ app.get('/reviews', async function (req, res) {
   }else{
     empty = false
   }
-
   res.render('reviews', {data: data[0], empty})
 })
 
@@ -95,9 +94,10 @@ app.get('/abc', async function (req, res) {
   res.json(data[0])
 })
 
-app.get('/reviewInfo/:id', function(req, res){
+app.get('/reviewInfo/:id', async function(req, res){
   const id = req.params.id
-  res.render('reviewInfo', {id: reviewsList[id]})
+  const data = await sequelize.query(`SELECT * FROM public."Reviews" where id=${id};`)
+  res.render('reviewInfo', {id: data[0][0]})
 })
 
 app.get('/credits', function (req, res) {
