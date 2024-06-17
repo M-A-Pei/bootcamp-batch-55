@@ -16,15 +16,15 @@ app.use("/assets" ,express.static(path.join(__dirname, "assets")))
 app.use(express.urlencoded({ extended: false }));
 
 app.get('/', function (req, res) {
-  res.render('index')
+  res.render('index', {title:"Profile page"})
 })
 
 app.get('/employees', function (req, res) {
-  res.render('employees')
+  res.render('employees', {title:"Employees page"})
 })
 
 app.get('/reviewsForm', function (req, res) {
-  res.render('reviewsForm')
+  res.render('reviewsForm', {title:"make a review"})
 })
 
 app.post('/reviewsForm', async function (req, res) {
@@ -51,7 +51,7 @@ app.post('/reviewDelete/:id', function(req, res){
 app.get("/reviewEdit/:id", async function(req, res){
   const {id} = req.params
   const data = await sequelize.query(`SELECT * FROM public."Reviews" where id=${id};`)
-  res.render('reviewEdit', {id, data: data[0][0] ,title: "edit review"})
+  res.render('reviewEdit', {id, data: data[0][0] ,title: "Edit review"})
 })
 
 app.post("/reviewEdit/:id", async function(req, res){
@@ -65,7 +65,7 @@ app.post("/reviewEdit/:id", async function(req, res){
 
   await sequelize.query(`UPDATE public."Reviews"
 	SET name='${name}', stayed='${stayed}', "left"='${left}', review='${review}', burger='${burger}', pizza='${pizza}', kelp='${kelp}', hotdog='${hotdog}'
-	WHERE id=${id};`, {typeof: QueryTypes.UPDATE})
+	WHERE id=${id};`)
   res.redirect('/reviews')
 })
 
@@ -78,7 +78,7 @@ app.get('/reviews', async function (req, res) {
   }else{
     empty = false
   }
-  res.render('reviews', {data: data[0], empty})
+  res.render('reviews', {data: data[0], empty, title: "Reviews page"})
 })
 
 app.get('/abc', async function (req, res) {
@@ -97,15 +97,15 @@ app.get('/abc', async function (req, res) {
 app.get('/reviewInfo/:id', async function(req, res){
   const id = req.params.id
   const data = await sequelize.query(`SELECT * FROM public."Reviews" where id=${id};`)
-  res.render('reviewInfo', {id: data[0][0]})
+  res.render('reviewInfo', {id: data[0][0], title: `this is about ${data[0][0].name}`})
 })
 
 app.get('/credits', function (req, res) {
-  res.render('credits')
+  res.render('credits', {title: "Credits page"})
 })
 
 app.get('/order', function (req, res) {
-  res.render('order')
+  res.render('order', {title: "Order page"})
 })
 
 app.post('/order', function (req, res){
