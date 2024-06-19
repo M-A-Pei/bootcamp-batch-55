@@ -1,35 +1,20 @@
-const employeeList = [
-    {
-        name: "Spongebob Squarepants",
-        rating: 5,
-        quote: "im ready! im ready! im ready!",
-        img: "https://upload.wikimedia.org/wikipedia/en/3/3b/SpongeBob_SquarePants_character.svg"
-    },
-    {
-        name: "Squidward Tentacles",
-        rating: 3,
-        quote: "why wont the world recognize real talent?",
-        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaKdxMRfg6lCqvTssMjnRM1183JJnBNhtx6w&s"
-    },
-    {
-        name: "Eugene Krabs",
-        rating: 4,
-        quote: "money! money! money!",
-        img: "https://upload.wikimedia.org/wikipedia/en/thumb/f/f8/Mr._Krabs.svg/1200px-Mr._Krabs.svg.png"
-    },
-    {
-        name: "Patrick Star",
-        rating: 1,
-        quote: "can i have uhhhh....",
-        img: "https://upload.wikimedia.org/wikipedia/en/thumb/3/33/Patrick_Star.svg/640px-Patrick_Star.svg.png"
-    },
-    {
-        name: "Gary",
-        rating: 1,
-        quote: "meow",
-        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8DPLa2FLF3lzuYxah5P13D01iZKW5MoWnVy-1yRb3ZEH3QzgynnvjLMBTav0fPKEdaMg&usqp=CAU"
+const employeeList = new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest()
+    xhr.open("get", "https://api.npoint.io/5ffd2e387e2e68434d0b", true)
+    xhr.onload = () => {
+        if(xhr.status == 200){
+            resolve(JSON.parse(xhr.response))
+        }else{
+            reject("request failed")
+        }
     }
-]
+
+    xhr.onerror = () => {
+        reject("404 not found")
+    }
+
+    xhr.send()
+})
 
 function loadEmployee(e){
     let rating = ""
@@ -52,18 +37,21 @@ function loadEmployee(e){
     `
 }
 
-function allEmployees(){
+async function allEmployees(){
     let container = document.getElementById("employeeContainer")
     container.innerHTML = ""
-    employeeList.forEach(e => {
+    const x = await employeeList
+    console.log(x[0])
+    x.forEach(e => {
         container.innerHTML += loadEmployee(e)
     });
 }
 
-function filterEmployee(r){
+ async function filterEmployee(r){
     let container = document.getElementById("employeeContainer")
     container.innerHTML = ""
-    let filter = employeeList.filter(e=>{
+    const x = await employeeList
+    let filter = x.filter(e=>{
         return e.rating == r
     })
 

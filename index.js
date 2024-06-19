@@ -117,6 +117,5 @@ app.post('/order', function (req, res){
 
 app.listen(port, ()=>{
     console.log(`listening on port http://localhost:${port}/`)
-    console.log(path.join(__dirname, "assets", "/"))
 })
 
