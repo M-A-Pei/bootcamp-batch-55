@@ -38,15 +38,15 @@
       </nav>
 
       <div class="container-fluid">
-        <a href="/reviewsForm" class="position-absolute end-0 top-25 mx-1 btn btn-warning btn-outline-dark">Write a Review</a>
-        <div class="row mt-5" id="titlecontainer">{{#if empty}}<h1 class="text-center">no reviews yet</h1> {{else}} <h1 class="text-center">List of reviews</h1> {{/if}}</div>
+        <a href="/reviewsForm" class="mt-3 mb-0 btn btn-warning btn-outline-dark">Write a Review</a>
+        <div class="row" id="titlecontainer">{{#if empty}}<h1 class="text-center">no reviews yet</h1> {{else}} <h1 class="text-center">List of reviews</h1> {{/if}}</div>
         <div class="row">
             <div class="col-sm-12 d-flex justify-content-center flex-wrap" id="reviewContainer">
               {{#each data}}
                   <div class="card bg-dark mb-3 mx-2 w-75">
-                    <div class="row g-0">
-                      <div class="col-sm-3 m-auto">
-                        <img class="img-fluid rounded-start" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEs3tXIoHAMjpoI0IEO30AvHLQ2bcuoh3MfQ&s" alt="">
+                    <div class="row d-flex flex-wrap g-0">
+                      <div class="col-sm-3">
+                        <img class="img-fluid w-100" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEs3tXIoHAMjpoI0IEO30AvHLQ2bcuoh3MfQ&s" alt="">
                       </div>
                       <div class="col-sm-7">
                         <div class="card-body">
@@ -66,13 +66,13 @@
                               <i class="fa-solid fa-wine-bottle text-light mx-2"></i>
                             {{/if}}
                           </div>
-                          <p class="card-text text-light" style="height:70px;overflow-y: scroll;">{{this.review}}</p>
+                          <p class="card-text text-light" style="height:80px;overflow-y: scroll;">{{this.review}}</p>
                         </div>
                       </div>
-                      <div class="col-sm-2">
-                        <a href="/reviewEdit/{{this.id}}" class="btn btn-success mt-3" style="width: 40%;">Edit</a>
+                      <div class="col-sm-2 text-center">
+                        <a href="/reviewEdit/{{this.id}}" class="btn btn-success mt-3 mb-3" style="width: 40%;">Edit</a>
                         <form class="d-inline" action="/reviewDelete/{{this.id}}" method="post">
-                          <button class="btn btn-danger mt-3">delete</button>
+                          <button class="btn btn-danger mt-3 mb-3" style="width: 45%">delete</button>
                         </form>
                       </div>
                     </div>
