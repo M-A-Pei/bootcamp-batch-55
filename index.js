@@ -1,11 +1,17 @@
 const exp = require('constants');
 const express = require('express')
-const order = require("./assets/js/order")
 const path = require("path");
 const {Sequelize, QueryTypes} = require("sequelize")
-const config = require("./config/config.json")
-const sequelize = new Sequelize(config.development)
+const session = require("express-session")
+const bcrypt = require("bcrypt")
+const flash = require("express-flash")
+const hbs = require("hbs")
+
+const order = require("./assets/js/order")
 const checkReview = require("./assets/js/reviewes")
+const config = require("./config/config.json")
+
+const sequelize = new Sequelize(config.development)
 const app = express()
 const port = 5000
 
@@ -14,6 +20,20 @@ app.set('views', path.join(__dirname, "assets", "pages"))
 
 app.use("/assets" ,express.static(path.join(__dirname, "assets")))
 app.use(express.urlencoded({ extended: false }));
+app.use(session({
+  name: "data",
+  secret: "rahasiabgtcui",
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    secure: false,
+    maxAge: 1000 * 60 * 60 * 24,
+  },
+})
+)
+app.use(flash())
+
+hbs.registerPartials("./assets/pages/props")
 
 app.get('/', function (req, res) {
   res.render('index', {title:"Profile page"})
@@ -78,6 +98,7 @@ app.get('/reviews', async function (req, res) {
   }else{
     empty = false
   }
+
   res.render('reviews', {data: data[0], empty, title: "Reviews page"})
 })
 
