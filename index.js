@@ -121,19 +121,39 @@ app.get('/reviewInfo/:id', async function(req, res){
   res.render('reviewInfo', {id: data[0][0], title: `this is about ${data[0][0].name}`})
 })
 
-app.get('/credits', function (req, res) {
-  res.render('credits', {title: "Credits page"})
-})
-
-app.get('/order', function (req, res) {
+app.get('/order', (req, res) => {
   res.render('order', {title: "Order page"})
 })
 
-app.post('/order', function (req, res){
+app.post('/order', (req, res) => {
     const x = req.body
     if(order(x)){
       res.redirect(`mailto:syafii2006@gmail.com?subject=Ordering a meal&body=Name: ${x.name}%0D%0ANumber:${x.number}%0D%0Aaddress: ${x.address}%0D%0Ai would like to order a ${x.order}`)
     }
+})
+
+app.get('/login', (req, res) => {
+    res.render('login', {title: "Login to your account"})
+})
+
+app.post('/login', async(req, res) => {
+    const {email, password} = req.body
+
+    const data = await sequelize.query(`SELECT * FROM public."Users" WHERE email='${email}'`, {type: QueryTypes.SELECT})
+
+    if(data.length == 0){
+
+    }
+})
+
+app.get('/register', (req, res) => {
+  res.render('register', {title: "Register an account"})
+})
+
+app.post('/register', async(req, res) => {
+  const {name, email, password} = req.body;
+  await sequelize.query(`INSERT INTO public."Users"(name, email, password) VALUES('${name}','${email}','${password}')`)
+  res.redirect('/login')
 })
 
 app.listen(port, ()=>{
