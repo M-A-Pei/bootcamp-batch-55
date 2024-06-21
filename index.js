@@ -16,13 +16,13 @@ const app = express()
 const port = 5000
 
 app.set('view engine', 'hbs');
-app.set('views', path.join(__dirname, "assets", "pages"))
+app.set('views', path.join(__dirname, "src", "pages"))
 
 app.use("/assets" ,express.static(path.join(__dirname, "assets")))
 app.use(express.urlencoded({ extended: false }));
 app.use(session({
   name: "data",
-  secret: "rahasiabgtcui",
+  secret: "krabypattysecretformula",
   resave: false,
   saveUninitialized: true,
   cookie: {
@@ -33,18 +33,22 @@ app.use(session({
 )
 app.use(flash())
 
-hbs.registerPartials("./assets/pages/props")
+hbs.registerPartials("./src/pages/props")
 
 app.get('/', function (req, res) {
-  res.render('index', {title:"Profile page"})
+  const isLogin = req.session.isLogin
+  const user = req.session.user
+  res.render('index', {title:"Profile page", isLogin, user})
 })
 
 app.get('/employees', function (req, res) {
-  res.render('employees', {title:"Employees page"})
+  const isLogin = req.session.isLogin
+  res.render('employees', {title:"Employees page", isLogin})
 })
 
 app.get('/reviewsForm', function (req, res) {
-  res.render('reviewsForm', {title:"make a review"})
+  const isLogin = req.session.isLogin
+  res.render('reviewsForm', {title:"make a review", isLogin})
 })
 
 app.post('/reviewsForm', async function (req, res) {
@@ -71,7 +75,8 @@ app.post('/reviewDelete/:id', function(req, res){
 app.get("/reviewEdit/:id", async function(req, res){
   const {id} = req.params
   const data = await sequelize.query(`SELECT * FROM public."Reviews" where id=${id};`)
-  res.render('reviewEdit', {id, data: data[0][0] ,title: "Edit review"})
+  const isLogin = req.session.isLogin
+  res.render('reviewEdit', {id, data: data[0][0] ,title: "Edit review", isLogin})
 })
 
 app.post("/reviewEdit/:id", async function(req, res){
@@ -99,30 +104,22 @@ app.get('/reviews', async function (req, res) {
     empty = false
   }
 
-  res.render('reviews', {data: data[0], empty, title: "Reviews page"})
-})
+  const isLogin = req.session.isLogin
 
-app.get('/abc', async function (req, res) {
-
-  const data = await sequelize.query(`SELECT * FROM public."Reviews"`, {typeof: QueryTypes.SELECT})
-  let empty
-  if(data.length == 0){
-    empty = true
-  }else{
-    empty = false
-  }
-
-  res.json(data[0])
+  res.render('reviews', {data: data[0], empty, title: "Reviews page", isLogin})
 })
 
 app.get('/reviewInfo/:id', async function(req, res){
   const id = req.params.id
   const data = await sequelize.query(`SELECT * FROM public."Reviews" where id=${id};`)
-  res.render('reviewInfo', {id: data[0][0], title: `this is about ${data[0][0].name}`})
+  const isLogin = req.session.isLogin
+
+  res.render('reviewInfo', {id: data[0][0], title: `this is about ${data[0][0].name}`, isLogin})
 })
 
 app.get('/order', (req, res) => {
-  res.render('order', {title: "Order page"})
+  const isLogin = req.session.isLogin
+  res.render('order', {title: "Order page", isLogin})
 })
 
 app.post('/order', (req, res) => {
@@ -133,7 +130,8 @@ app.post('/order', (req, res) => {
 })
 
 app.get('/login', (req, res) => {
-    res.render('login', {title: "Login to your account"})
+    const isLogin = req.session.isLogin
+    res.render('login', {title: "Login to your account", isLogin})
 })
 
 app.post('/login', async(req, res) => {
@@ -141,19 +139,63 @@ app.post('/login', async(req, res) => {
 
     const data = await sequelize.query(`SELECT * FROM public."Users" WHERE email='${email}'`, {type: QueryTypes.SELECT})
 
-    if(data.length == 0){
 
+    if(data[0].length == 0){
+      req.flash("LoginFailed", "Login Failed, Email is not registered")
+      return res.redirect('/login')
     }
+
+    bcrypt.compare(password, data[0].password, (err, result)=>{
+        if(err){
+          req.flash("LoginFailed", "Login Failed, server failed")
+          return res.redirect('/login')
+        }
+
+        if(!result){
+          req.flash("LoginFailed", "Login Failed, password was wrong")
+          return res.redirect('/login')
+        }
+
+        req.flash("LoginSuccess", "Login Success!")
+        req.session.isLogin = true
+        req.session.user = {
+          name: data[0].name,
+          email: data[0].email,
+        }
+
+        res.redirect("/")
+    })
+
+
 })
 
 app.get('/register', (req, res) => {
-  res.render('register', {title: "Register an account"})
+  const isLogin = req.session.isLogin
+  res.render('register', {title: "Register an account", isLogin})
 })
 
 app.post('/register', async(req, res) => {
   const {name, email, password} = req.body;
-  await sequelize.query(`INSERT INTO public."Users"(name, email, password) VALUES('${name}','${email}','${password}')`)
+  
+  const check = await sequelize.query(`SELECT * FROM public."Users" WHERE email='${email}'`)
+  if(check[0].length != 0){
+    req.flash("registerFailed", "Register Failed, Email is already being used!")
+    return res.redirect('/register')
+  }
+  bcrypt.hash(password, 10, async (err, hash)=>{
+    if(err){
+      req.flash("registerFailed", "Register Failed, Password cant be encrypted!")
+      return res.redirect('/register')
+    }
+    await sequelize.query(`INSERT INTO public."Users"(name, email, password) VALUES('${name}','${email}','${hash}')`)
+    
+  })
+  req.flash("registerSuccess", "Account Successfully made, now go login")
   res.redirect('/login')
+})
+
+app.post('/logout', (req, res) => {
+  req.session.destroy(() => res.redirect('/'))
 })
 
 app.listen(port, ()=>{

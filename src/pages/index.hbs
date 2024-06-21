@@ -9,13 +9,26 @@
     <script src="https://kit.fontawesome.com/0412fad157.js" crossorigin="anonymous"></script>
   </head>
   <body>
-   {{>navbar}}
+   {{>navbar login=isLogin}}
 
       <div class="container-fluid">
         <div class="row mb-5">
             <div class="col-12 d-flex flex-column justify-content-center align-items-center">
-                <h1 class="mt-4 text-warning profile-title  display-4" style="line-height: 15px;">Welcome to the Krusty Krabs!</h1>
-                <span class="text-secondary">house of the krabby patties</span>
+                <h1 class="mt-4 text-warning profile-title  display-4" style="line-height: 15px;">
+                  {{#if isLogin}}
+                    Welcome {{user.name}}
+                    {{else}}
+                    Welcome to the Krusty Krabs!
+                  {{/if}}
+                  
+                </h1>
+                <span class="text-secondary">
+                  {{#if isLogin}}
+                    to the Krusty Krabs!
+                    {{else}}
+                    house of the krabby patties
+                  {{/if}}
+                </span>
                 <div class="card bg-dark mt-2 frame" style="width: 18rem;">
                     <div class="bg-success">
                         <img class="card-img-top" src="assets/img/Krabs_artwork.webp" alt="Card image cap">
