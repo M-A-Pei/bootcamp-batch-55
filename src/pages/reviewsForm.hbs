@@ -17,10 +17,10 @@
         <div class="row">
             <div class="col-sm-6 d-flex flex-column justify-content-center align-items-center m-auto">
                 <h1 class="text-warning mt-3">Review us!</h1>
-                <form class="w-100 border border-dark p-5 text-light" method="POST" action="/reviewsForm" style="background-color: rgba(4, 49, 0, 0.452); border-radius: 50px;">
+                <form enctype="multipart/form-data" class="w-100 border border-dark p-5 text-light" method="POST" action="/reviewsForm" style="background-color: rgba(4, 49, 0, 0.452); border-radius: 50px;">
                   <div class="form-group mb-3">
-                    <label>Name</label>
-                    <input type="text" name="name" class="form-control" style="background-color: rgb(194, 194, 194); border: 1px solid green; border-radius: 10px;" id="reviewName">
+                    <label>Review</label>
+                    <input type="text" name="review" class="form-control" style="background-color: rgb(194, 194, 194); border: 1px solid green; border-radius: 10px;" id="reviewName">
                   </div>
                   <div class="form-group mb-3 row">
                     <div class="col">
@@ -35,8 +35,8 @@
                   </div>
                   
                   <div class="form-group mb-3">
-                    <label>Review</label>
-                    <textarea name="review" style="background-color: rgb(194, 194, 194); resize: none; border: 1px solid green; border-radius: 10px;" class="form-control" id="review" rows="3"></textarea>
+                    <label>Description</label>
+                    <textarea name="description" style="background-color: rgb(194, 194, 194); resize: none; border: 1px solid green; border-radius: 10px;" class="form-control" id="review" rows="3"></textarea>
                   </div>
 
                   <label>what did you eat?</label>

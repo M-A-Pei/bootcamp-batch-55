@@ -24,7 +24,7 @@
         </div>
         <div class="row">
             <div class="col-sm-5 m-auto">
-                <form class="w-100 border border-dark p-5" method="post" action="/register" style="background-color: rgba(236, 238, 144, 0.37); border-radius: 50px;">
+                <form enctype="multipart/form-data" class="w-100 border border-dark p-5" method="post" action="/register" style="background-color: rgba(236, 238, 144, 0.37); border-radius: 50px;">
                     <div class="form-group mb-3">
                         <label for="exampleInputEmail1">Name</label>
                         <input type="text" class="form-control" name="name" style="background-color: rgb(207, 207, 207); border: 1px solid green; border-radius: 10px;" id="orderName">
@@ -33,6 +33,17 @@
                         <label for="exampleInputPassword1">Email</label>
                         <input type="text" class="form-control" name="email" style="background-color: rgb(207, 207, 207); border: 1px solid green; border-radius: 10px;" id="orderNumber">
                     </div>
+                    
+                    <div class="form-group mb-3">
+                      <label>Description</label>
+                      <textarea name="description" style="background-color: rgb(194, 194, 194); resize: none; border: 1px solid green; border-radius: 10px;" class="form-control" rows="3"></textarea>
+                    </div>
+
+                    <label>Profile Picture</label>
+                    <div class="form-group d-flex flex-column mb-3 p-2" style="height: 70px; background-color: rgb(194, 194, 194);border: 1px solid green; border-radius: 10px;">
+                        <input type="file" class="form-control-file" name="profilePic">
+                    </div>
+
                     <div class="form-group mb-3">
                         <label for="exampleInputPassword1">Password</label>
                         <input type="password" class="form-control" name="password" style="background-color: rgb(207, 207, 207); border: 1px solid green; border-radius: 10px;" id="orderNumber">

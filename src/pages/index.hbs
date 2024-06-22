@@ -11,6 +11,13 @@
   <body>
    {{>navbar login=isLogin}}
 
+      {{#if messages.loginSuccess}}
+      <div class="alert alert-success alert-dismissible fade show position-fixed m-3" role="alert">
+          {{messages.loginSuccess}}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {{/if}}
+
       <div class="container-fluid">
         <div class="row mb-5">
             <div class="col-12 d-flex flex-column justify-content-center align-items-center">
@@ -29,7 +36,18 @@
                     house of the krabby patties
                   {{/if}}
                 </span>
-                <div class="card bg-dark mt-2 frame" style="width: 18rem;">
+
+                {{#if isLogin}}
+                    <div class="col-12 d-flex flex-column justify-content-center align-items-center">
+                      <div class="card bg-dark mt-3 frame mb-5" style="width: 18rem;">
+                          <img class="card-img-top" style="height: 250px;" src="/assets/uploads/{{user.profilePic}}" alt="Card image cap">
+                          <div class="card-body border-top-light">
+                            <h4 class="card-title text-light text-center">{{user.name}}</h4>
+                            <p class="text-secondary">{{user.description}}</p>
+                          </div>
+                      </div>
+                  {{else}}
+                    <div class="card bg-dark mt-2 frame" style="width: 18rem;">
                     <div class="bg-success">
                         <img class="card-img-top" src="assets/img/Krabs_artwork.webp" alt="Card image cap">
                     </div>
@@ -37,7 +55,9 @@
                       <h4 class="card-title text-light" >Eugene Krabs</h4>
                       <p class="card-text text-secondary">the proud CEO of krusty krabs, an amazing father, and an even better boss</p>
                     </div>
-                  </div>
+                    </div>
+                {{/if}}
+                
             </div>
         </div>
 

@@ -20,12 +20,12 @@
                   <div class="card bg-dark mb-3 mx-2 w-75">
                     <div class="row d-flex flex-wrap g-0">
                       <div class="col-sm-3">
-                        <img class="img-fluid w-100" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEs3tXIoHAMjpoI0IEO30AvHLQ2bcuoh3MfQ&s" alt="">
+                        <img class="img-fluid" style="width: 100%; height: 180px" src="/assets/uploads/{{this.image}}" alt="">
                       </div>
                       <div class="col-sm-7">
                         <div class="card-body">
-                          <a href="/reviewInfo/{{this.id}}" class="text-decoration-none"><h3 class="card-title text-warning" style="line-height: 15px;">{{this.name}}</h3></a>
-                          <span class="card-text text-secondary small" style="font-size: 10px;" id="time">{{this.stayed}}</span>
+                          <a href="/reviewInfo/{{this.id}}" class="text-decoration-none"><h3 class="card-title text-warning" style="line-height: 15px;">{{this.review}}</h3></a>
+                          <span class="card-text text-secondary small"><span id="time">{{this.stayed}}</span>|| {{this.author}}</span>
                           <div class="d-flex">
                             {{#if this.burger}}
                               <i class="fa-solid fa-burger text-light mx-2"></i>
@@ -40,7 +40,7 @@
                               <i class="fa-solid fa-wine-bottle text-light mx-2"></i>
                             {{/if}}
                           </div>
-                          <p class="card-text text-light" style="height:80px;overflow-y: scroll;">{{this.review}}</p>
+                          <p class="card-text text-light" style="height:80px;overflow-y: scroll;">{{this.description}}</p>
                         </div>
                       </div>
                       <div class="col-sm-2 text-center">

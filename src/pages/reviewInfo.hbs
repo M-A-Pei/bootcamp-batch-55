@@ -18,9 +18,9 @@
                 <div class="card frame mt-4 border border-dark p-5 pt-3 w-75 h-auto rounded bg-dark" style="--bs-bg-opacity: .5;">
                     <div class="row">
                         <div class="col-md-12 d-flex flex-column align-items-center p-0">
-                            <h1 class="text-warning mt-3" style="line-height: 5px;">{{id.name}}</h1>
+                            <h1 class="text-warning mt-3">{{id.review}}</h1>
                             <span id="time">{{id.stayed}}</span>
-                            <img class="img-fluid rounded h-75 w-75" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEs3tXIoHAMjpoI0IEO30AvHLQ2bcuoh3MfQ&s" alt="">
+                            <img class="img-fluid rounded h-75 w-75" src="/assets/uploads/{{id.image}}" alt="">
                             <div class="flex lh-lg mt-2"> 
                               {{#if id.burger}}
                                   <i class="fa-solid fa-burger text-dark mx-2 fa-xl"></i>
@@ -35,7 +35,7 @@
                                   <i class="fa-solid fa-wine-bottle text-dark mx-2 fa-xl"></i>
                               {{/if}}
                             </div>
-                            <p class="card-text lh-bg">{{id.review}}</p>
+                            <p class="card-text lh-bg">{{id.description}}</p>
                         </div>
                     </div>
                 </div>

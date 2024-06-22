@@ -6,6 +6,8 @@ const session = require("express-session")
 const bcrypt = require("bcrypt")
 const flash = require("express-flash")
 const hbs = require("hbs")
+const multer = require("multer")
+const upload = multer({dest: 'assets/uploads/'})
 
 const order = require("./assets/js/order")
 const checkReview = require("./assets/js/reviewes")
@@ -48,17 +50,24 @@ app.get('/employees', function (req, res) {
 
 app.get('/reviewsForm', function (req, res) {
   const isLogin = req.session.isLogin
+  if(!isLogin){
+    req.flash("notLoggedIn", "you need to be logged in to write a review")
+    return res.redirect('/login')
+  }
   res.render('reviewsForm', {title:"make a review", isLogin})
 })
 
-app.post('/reviewsForm', async function (req, res) {
+app.post('/reviewsForm', upload.single('img') ,async function (req, res) {
   const data = req.body;
+  const img = req.file.filename
+  const author = req.session.user.name
+
   if(checkReview(data)){
     if(data.burger == undefined) {data.burger = false} else data.burger = true
     if(data.pizza == undefined) {data.pizza = false} else data.pizza = true
     if(data.kelp == undefined) {data.kelp = false} else data.kelp = true
     if(data.hotdog == undefined) {data.hotdog = false} else data.hotdog = true
-    let query = `INSERT INTO public."Reviews"(name, stayed, "left", review, burger, pizza, kelp, hotdog, "createdAt", "updatedAt")VALUES('${data.name}', '${data.stayed}', '${data.left}', '${data.review}', '${data.burger}', '${data.pizza}', '${data.kelp}', '${data.hotdog}', '15/6/2024', '15/6/2024');`
+    let query = `INSERT INTO public."Reviews"(review, stayed, "left", description, burger, pizza, kelp, hotdog, "createdAt", "updatedAt", image, author)VALUES('${data.review}', '${data.stayed}', '${data.left}', '${data.description}', '${data.burger}', '${data.pizza}', '${data.kelp}', '${data.hotdog}', '15/6/2024', '15/6/2024', '${img}', '${author}');`
     await sequelize.query(query, {typeof: QueryTypes.INSERT})
     res.redirect("/reviews")
   }else{
@@ -105,7 +114,6 @@ app.get('/reviews', async function (req, res) {
   }
 
   const isLogin = req.session.isLogin
-
   res.render('reviews', {data: data[0], empty, title: "Reviews page", isLogin})
 })
 
@@ -139,30 +147,33 @@ app.post('/login', async(req, res) => {
 
     const data = await sequelize.query(`SELECT * FROM public."Users" WHERE email='${email}'`, {type: QueryTypes.SELECT})
 
-
-    if(data[0].length == 0){
-      req.flash("LoginFailed", "Login Failed, Email is not registered")
+    console.log(data.length)
+    if(data.length == 0){
+      req.flash("loginFailed", "Login Failed, Email is not registered")
       return res.redirect('/login')
     }
 
     bcrypt.compare(password, data[0].password, (err, result)=>{
         if(err){
-          req.flash("LoginFailed", "Login Failed, server failed")
+          req.flash("loginFailed", "Login Failed, server failed")
           return res.redirect('/login')
         }
 
         if(!result){
-          req.flash("LoginFailed", "Login Failed, password was wrong")
+          req.flash("loginFailed", "Login Failed, password was wrong")
           return res.redirect('/login')
         }
 
-        req.flash("LoginSuccess", "Login Success!")
+        req.flash("loginSuccess", "Login Success!")
         req.session.isLogin = true
         req.session.user = {
           name: data[0].name,
           email: data[0].email,
+          description: data[0].description,
+          profilePic: data[0].profilepic
         }
 
+        console.log(req.session.user)
         res.redirect("/")
     })
 
@@ -174,8 +185,9 @@ app.get('/register', (req, res) => {
   res.render('register', {title: "Register an account", isLogin})
 })
 
-app.post('/register', async(req, res) => {
-  const {name, email, password} = req.body;
+app.post('/register', upload.single("profilePic") ,async(req, res) => {
+  const {name, email, password, description} = req.body;
+  const img = req.file.filename
   
   const check = await sequelize.query(`SELECT * FROM public."Users" WHERE email='${email}'`)
   if(check[0].length != 0){
@@ -187,7 +199,7 @@ app.post('/register', async(req, res) => {
       req.flash("registerFailed", "Register Failed, Password cant be encrypted!")
       return res.redirect('/register')
     }
-    await sequelize.query(`INSERT INTO public."Users"(name, email, password) VALUES('${name}','${email}','${hash}')`)
+    await sequelize.query(`INSERT INTO public."Users"(name, email, password, profilePic, description) VALUES('${name}','${email}','${hash}', '${img}', '${description}')`)
     
   })
   req.flash("registerSuccess", "Account Successfully made, now go login")
